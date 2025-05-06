@@ -9,6 +9,7 @@ RUN mkdir -p /tmp/traffdata && chown -R user:user /tmp/traffdata
 # Set environment variables
 ENV TRAFF_TOKEN=Ek75Vqh9h0oKQ96bAhV5FLxGH4e9wiUGCyh5M/SgkAU=
 ENV DNAME=ch-s02a
+ENV DATA_DIR=/tmp/traffdata  # Ensure the application uses a writable directory
 
 # Switch to non-root user
 USER 10001
@@ -17,4 +18,4 @@ USER 10001
 ENTRYPOINT ["./Cli"]
 
 # Command to start TraffMonetizer with necessary parameters
-CMD ["start", "accept", "--token", "$TRAFF_TOKEN", "--device-name", "$DNAME", "--data-dir", "/tmp/traffdata"]
+CMD ["start", "accept", "--token", "$TRAFF_TOKEN", "--device-name", "$DNAME", "--data-dir", "$DATA_DIR"]
