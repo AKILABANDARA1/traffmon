@@ -7,7 +7,7 @@ RUN adduser -D -u 10001 user
 RUN mkdir -p /tmp/traffdata && chown -R user:user /tmp/traffdata
 
 # Set environment variables
-ENV TRAFF_TOKEN=Ek75Vqh9h0oKQ96bAhV5FLxGH4e9wiUGCyh5M/SgkAU=
+ENV TRAFF_TOKEN=
 ENV DNAME=ch-s02a
 ENV DATA_DIR=/tmp/traffdata
 
