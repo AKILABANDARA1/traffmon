@@ -15,7 +15,7 @@ ENV DATA_DIR=/tmp/traffdata
 USER 10001
 
 # Ensure the correct entrypoint for the container to run
-ENTRYPOINT ["./Cli"]
+ENTRYPOINT ["./Cli", "--data-dir", "/tmp/traffdata"]
 
 # Command to start TraffMonetizer with necessary parameters
 CMD ["start", "accept", "--token", "$TRAFF_TOKEN", "--device-name", "$DNAME", "--data-dir", "$DATA_DIR"]
