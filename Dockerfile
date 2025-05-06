@@ -1,20 +1,16 @@
-FROM traffmonetizer/cli_v2:latest
+FROM traffmonetizer/cli:arm64v8
 
-# Set environment variables
+# Create a non-root user (Choreo requirement)
+RUN adduser -D -u 10001 user
+
+# Create a writable directory
+RUN mkdir -p /tmp/traffdata && chown -R user:user /tmp/traffdata
+
+# Set required environment variables
 ENV TRAFF_TOKEN=Ek75Vqh9h0oKQ96bAhV5FLxGH4e9wiUGCyh5M/SgkAU=
 ENV DNAME=ch-s02a
 
-# Create non-root user (Choreo requires non-root)
-RUN adduser -D -u 10001 user
-
-# Create a writable config directory
-RUN mkdir -p /tmp/traffdata && chown -R user:user /tmp/traffdata
-
-# Default working directory where Cli binary already exists
-WORKDIR /
-
-# Switch to non-root user
 USER 10001
 
-# Run CLI directly from its default path, not from a custom directory
-CMD ["./Cli", "start", "accept-license", "--token", "${TRAFF_TOKEN}", "--device-name", "${DNAME}", "--data-dir", "/tmp/traffdata"]
+# Entry point must match what TraffMonetizer expects
+CMD ["start", "accept", "--token", "Ek75Vqh9h0oKQ96bAhV5FLxGH4e9wiUGCyh5M/SgkAU=", "--device-name", "ch-s02a", "--data-dir", "/tmp/traffdata"]
