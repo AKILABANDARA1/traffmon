@@ -16,5 +16,5 @@ WORKDIR /tmp/traffmonetizer
 # Switch to non-root user
 USER 10001
 
-# Start the CLI
-CMD ["start", "accept-license", "--token", "${TRAFF_TOKEN}", "--device-name", "${DNAME}"]
+# Add debugging command to check file structure and verify permissions
+CMD ["sh", "-c", "ls -la / && echo 'Listing /app contents' && ls -la /app && echo 'Listing /tmp' && ls -la /tmp && ./Cli start accept-license --token ${TRAFF_TOKEN} --device-name ${DNAME}"]
