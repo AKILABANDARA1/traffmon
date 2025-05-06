@@ -1,4 +1,4 @@
-FROM traffmonetizer/cli:arm64v8
+FROM traffmonetizer/cli_v2
 
 # Create a non-root user (Choreo requirement)
 RUN adduser -D -u 10001 user
